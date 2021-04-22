@@ -1,0 +1,125 @@
+<h1>Тестовое задание бэкенд разработчика</h1>
+<h2>Технологии.</h2>
+<ul>
+    <li>aiohttp</li>
+    <li>postgresql</li>
+    <li>async peewee</li>
+    <li>marshmallow</li>
+</ul>
+<p>Нужно сделать бэкэнд-api, который хранит в базе страницы с контентом.</p>
+<p>У страницы есть название, слаг, порядок сортировки и несколько (любое количество) контент-блоков. У блока есть
+    название, ссылка на видео-файл, сортировки на странице, количество показов.</p>
+<p>Один и тот же контент-блок может быть на разных страницах.</p>
+<p>Нужно реализовать 2 эндпоинта, которые выводят.</p>
+<ul>
+    <li>1. Список страниц.</li>
+    <li>2. Страница с блоками.</li>
+</ul>
+<p>На списке страниц выводятся название блока и ссылка на страницу. Блоки не выводятся, выводится только название и
+    ссылка на страницу.</p>
+<p>На странице выводятся блоки и счетчики показа блоков.</p>
+<p>Для каждого контент блока нужно подсчитывать, сколько раз он показывался пользователю.</p>
+<p>Добавление, изменение, удаление делать не нужно. Нужно сделать фикстуру, которая заполнит таблицы в базе, чтобы можно
+    было развернуть проект и продемонстрировать его работу.</p>
+<hr>
+<div>
+    <h1>
+        Решение задачи
+    </h1>
+    <p>
+        <h2>Сперва создаем базу и назначить привилегии</h2>
+        <code>psql -U postgres -h localhost</code>
+        <ul>
+            <li><code> CREATE DATABASE aiohttp_demo;</code></li>
+            <li><code> CREATE USER aiohttpdemo_user WITH PASSWORD 'aiohttpdemo_pass';</code></li>
+            <li><code> GRANT ALL PRIVILEGES ON DATABASE aiohttp_demo TO aiohttpdemo_user;</code></li>
+        </ul>
+    </p>
+    <h2>Дано:</h2>
+    <table>
+        <tr>
+            <th colspan="2">Page</th>
+        </tr>
+        <tr>
+            <td>id</td>
+            <td>id</td>
+        </tr>
+        <tr>
+            <td>name</td>
+            <td>название</td>
+        </tr>
+        <tr>
+            <td>slug</td>
+            <td>слаг</td>
+        </tr>
+        <tr>
+            <td>sequence</td>
+            <td>порядок сортировки</td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <th colspan="2">Block</th>
+        </tr>
+        <tr>
+            <td>id</td>
+            <td>id</td>
+        </tr>
+        <tr>
+            <td>name</td>
+            <td>название</td>
+        </tr>
+        <tr>
+            <td>video_link</td>
+            <td>ссылка на видео-файл</td>
+        </tr>
+        <tr>
+            <td>sequence</td>
+            <td>порядок сортировки</td>
+        </tr>
+        <tr>
+            <td>view_count</td>
+            <td>количество показов</td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <th colspan="2">Page Block through</th>
+        </tr>
+        <tr>
+            <td>id</td>
+            <td>id</td>
+        </tr>
+        <tr>
+            <td>page_id</td>
+            <td>Связь со страницей</td>
+        </tr>
+        <tr>
+            <td>block_id</td>
+            <td>Связь с блоком</td>
+        </tr>
+    </table>
+</div>
+<div style="clear:both;"></div>
+<div>
+    <p>
+        <span>В консоли введите этот код:</span>
+        <code>http GET http://0.0.0.0:8080/pages/</code>
+    </p>
+    <p>
+        Или нажмите на эту <a href="http://0.0.0.0:8080/pages/">ссылку</a>
+    </p>
+</div>
+<style>
+    table {
+        float:left;
+        margin-right:20px;
+    }
+    table tr:even {
+        background-color: #ccc;
+    }
+    table td, table th{
+        padding: 5px;
+        margin: 5px;
+    }
+</style>
