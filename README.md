@@ -26,6 +26,6 @@ http://0.0.0.0/pages/
 http://0.0.0.0/page/first-test-page/
 
 ### Или в консоли
-http://0.0.0.0/pages/
+http GET http://0.0.0.0/pages/
 
-http://0.0.0.0/page/first-test-page/
+http GET http://0.0.0.0/page/first-test-page/
