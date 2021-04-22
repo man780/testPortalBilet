@@ -1,5 +1,5 @@
 from aiohttp_jinja2 import template
-from demo.models import getPageBlocks, getPages, getPage, BlockSchema, PageSchema, PageListSchema
+from demo.models import getPageBlocks, getPages, getPage, BlockSchema, PageSchema
 from aiohttp import web
 
 
