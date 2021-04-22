@@ -49,6 +49,9 @@ PageBlock = Page.blocks.get_through_model()
 
 def populate_test_data():
     """Тут создаем Таблицы и заливаем данные"""
+
+    if 'page' in database.get_tables():
+        return
     database.create_tables([
         Page,
         Block,
